@@ -23,10 +23,11 @@ $( document ).ready(() => {
                 
         let responseHandler = (data) => {
             console.log(data);
-            $("#location").text(`Current Location: ${data.name}, ${data.sys.country}`);
-            $("#weather").text(`Current Weather Conditions: ${data.weather[0].main} (${data.weather[0].description})`);
-            //$("img").attr("src", data.weather[0].icon);
-            $("#temperature").text(`Current Temperature: ${data.main.temp}`);
+            let tempVal = data.main.temp;
+            $("#location").text(`${data.name}, ${data.sys.country}`);
+            $("#weather").text(`${data.weather[0].main} (${data.weather[0].description})`);
+            $("img").attr("src", data.weather[0].icon);
+            $("#temperature").html(`Current Temperature: <span class="temperatureValue">${tempVal}</span><span class="currentState"> °C</span>`);
             
             //Obtain images from unsplash API
             let unsplash_id = "279f227c58b4278d7d7724b8e681048bf7a6d4b07f8553d43409f6d1bc594ec4";
@@ -38,27 +39,43 @@ $( document ).ready(() => {
             
             let responseHandler_unsplash = (data) => {
                 console.log(data);
-                $("img").attr("src", data.urls.small);
+                $("main").css({"background-image": `url(${data.urls.regular})`});
+                //$("img").attr("src", data.urls.small);
             };
             
             let errorHandler_unsplash = (err) => alert(`There was ERROR handling your request: ${err}`);
             
             $.ajax(requestHeaders_unsplash).done(responseHandler_unsplash).fail(errorHandler_unsplash);
-            
         };
         
         let errorHandler = (err) => alert(`There was ERROR handling your request: ${err}`);
         //Making jQuery ajax request
         $.ajax(requestHeaders).done(responseHandler).fail(errorHandler);
         
-
-        
-            
     };
     
     let error = (err) => alert(`ERROR(${err.code}): ${err.message}`);
     
     navigator.geolocation.getCurrentPosition(success, error, options);
 
+//Handling toggle events on buttons
+
+$(".buttons").click(() => {
+            let temp = Number($(".temperatureValue").text());
+        let currentState = $(".currentState").text();
+    $("button").toggle(() => {
+        if(currentState === " °C"){
+            let tempF = (temp * 1.8 + 32).toFixed();
+            $(".temperatureValue").text(tempF);
+            $(".currentState").text(" °F");
+            
+        }
+        else{
+            let tempC = ((temp - 32) / 1.8).toFixed();
+            $(".temperatureValue").text(tempC);
+            $(".currentState").text(" °C");
+        }
+    });
+});
 
 });
