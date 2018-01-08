@@ -7,11 +7,6 @@ html, body {
     border: 0;
 }
 
-h1 {
-    margin-top: 0;
-}
-
-
 main {
     margin: 0;
     padding: 0;
@@ -30,23 +25,23 @@ main {
 
     color: white;
     font-family: 'Fredericka the Great', cursive;
-    text-shadow: 3px 3px 2px black;
+    text-shadow: 3px 3px 10px black;
 }
 
 div {
     line-height: 10vh;
-    font-size: 1.5em;
+    font-size: 2em;
     text-align: center;
 }
 
 #location {
-    font-size: 3em;
+    font-size: 4em;
 }
 
 img {
     height: 75px;
     width: 75px;
-    border: 2px solid gray;
+    border: 2px solid grey;
     border-radius: 50%;
     -moz-box-shadow: 3px 3px 2px black;
     -webkit-box-shadow: 3px 3px 2px black;
@@ -56,13 +51,13 @@ img {
 button {
   position: relative;
   cursor: pointer;
+  color: black;
   font-weight: bold;
   margin: 0 15px 0 0;
   border-radius: 4px;
   font-family: 'Fredericka the Great', cursive;
   font-size: 1rem;
   padding: 8px 15px;
-  outline: none;
   -moz-box-shadow:    inset 0px 1px 0px 0px black;
   -webkit-box-shadow: inset 0px 1px 0px 0px black;
   box-shadow:         inset 0px 1px 0px 0px black;
@@ -72,24 +67,70 @@ button {
   letter-spacing: 1.1px;
 }
 
-    button:hover, button:active{
+    button div{
+        margin: 0;
+        padding: 0;
+        line-height: 20px;
+        font-size: 1.5em;
+    }
+    
+    button:hover{
         background: hsl(16, 100%, 30%);
         padding: 8px 15px;
         border: 1px solid grey;
         box-shadow: 0px 0px 15px hsl(16, 100%, 30%);
         font-family: 'Fredericka the Great', cursive;
-        color: grey;
+        color: white;
         font-size: 1.05rem;
         letter-spacing: 1.1px;
     }
-    
-    button:active{
-        color: white;
+
+    button:focus{
+        color: black;
+        outline: none;
     }
     
-
-
 .hideElement {
     display: none;
 }
 
+footer {
+    height: 10%;
+    position: absolute;
+    top: 90vh;
+    right: 0;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 0.8em;
+    color: grey;
+}
+
+footer p {
+    margin: 0 10px;
+    padding: 0;
+    transition: all 0.4 ease;
+}
+
+footer p:hover {
+    color: #ede8e8;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.4s ease;
+    color: grey;
+}
+
+a:hover {
+    color: #02d6fc;
+    font-size: 1.2em;
+}
+
+a i {
+    padding: 0 7px;
+    color: #02d6fc;
+}

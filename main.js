@@ -1,5 +1,6 @@
 /*global $*/
 /*global navigator*/
+/*global UNSPLASHID*/
 
 $( document ).ready(() => {
 //Obtaining User's current geolocation using HTML5 Geolocation API, link to resource: https://www.w3schools.com/html/html5_geolocation.asp
@@ -24,13 +25,16 @@ $( document ).ready(() => {
         let responseHandler = (data) => {
             console.log(data);
             let tempVal = data.main.temp;
+            let imageIcon = data.weather[0].icon;
             $("#location").text(`${data.name}, ${data.sys.country}`);
             $("#weather").text(`${data.weather[0].main} (${data.weather[0].description})`);
-            $("img").attr("src", data.weather[0].icon);
+            if(imageIcon){
+                $(".image").html(`<img src=${data.weather[0].icon} />`);
+            }
             $("#temperature").html(`Current Temperature: <span class="temperatureValue">${tempVal}</span><span class="currentState"> °C</span>`);
-            
-            //Obtain images from unsplash API
-            let unsplash_id = "279f227c58b4278d7d7724b8e681048bf7a6d4b07f8553d43409f6d1bc594ec4";
+
+            //Obtain images from unsplash API. In order to get UNSPLASHID visit https://unsplash.com/developers and register your application
+            let unsplash_id = UNSPLASHID;
             let requestHeaders_unsplash = {
                 method: "GET",
                 url: `https://api.unsplash.com/photos/random?client_id=${unsplash_id}&query=${data.weather[0].main}&orientation=landscape`,
@@ -40,12 +44,11 @@ $( document ).ready(() => {
             let responseHandler_unsplash = (data) => {
                 console.log(data);
                 $("main").css({"background-image": `url(${data.urls.regular})`});
-                //$("img").attr("src", data.urls.small);
             };
             
             let errorHandler_unsplash = (err) => alert(`There was ERROR handling your request: ${err}`);
             
-            $.ajax(requestHeaders_unsplash).done(responseHandler_unsplash).fail(errorHandler_unsplash);
+           $.ajax(requestHeaders_unsplash).done(responseHandler_unsplash).fail(errorHandler_unsplash);
         };
         
         let errorHandler = (err) => alert(`There was ERROR handling your request: ${err}`);
@@ -60,10 +63,10 @@ $( document ).ready(() => {
 
 //Handling toggle events on buttons
 
-$(".buttons").click(() => {
+$("button").click(() => {
             let temp = Number($(".temperatureValue").text());
         let currentState = $(".currentState").text();
-    $("button").toggle(() => {
+    $("button div").toggle("slow","linear",() => {
         if(currentState === " °C"){
             let tempF = (temp * 1.8 + 32).toFixed();
             $(".temperatureValue").text(tempF);
