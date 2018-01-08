@@ -1,6 +1,5 @@
 /*global $*/
 /*global navigator*/
-/*global UNSPLASHID*/
 
 $( document ).ready(() => {
 //Obtaining User's current geolocation using HTML5 Geolocation API, link to resource: https://www.w3schools.com/html/html5_geolocation.asp
@@ -31,10 +30,11 @@ $( document ).ready(() => {
             if(imageIcon){
                 $(".image").html(`<img src=${data.weather[0].icon} />`);
             }
+            console.log(`${data.weather[0].icon}`);
             $("#temperature").html(`Current Temperature: <span class="temperatureValue">${tempVal}</span><span class="currentState"> °C</span>`);
 
-            //Obtain images from unsplash API. In order to get UNSPLASHID visit https://unsplash.com/developers and register your application
-            let unsplash_id = UNSPLASHID;
+            //Obtain images from unsplash API
+            let unsplash_id = "279f227c58b4278d7d7724b8e681048bf7a6d4b07f8553d43409f6d1bc594ec4";
             let requestHeaders_unsplash = {
                 method: "GET",
                 url: `https://api.unsplash.com/photos/random?client_id=${unsplash_id}&query=${data.weather[0].main}&orientation=landscape`,
@@ -48,7 +48,7 @@ $( document ).ready(() => {
             
             let errorHandler_unsplash = (err) => alert(`There was ERROR handling your request: ${err}`);
             
-           $.ajax(requestHeaders_unsplash).done(responseHandler_unsplash).fail(errorHandler_unsplash);
+            $.ajax(requestHeaders_unsplash).done(responseHandler_unsplash).fail(errorHandler_unsplash);
         };
         
         let errorHandler = (err) => alert(`There was ERROR handling your request: ${err}`);

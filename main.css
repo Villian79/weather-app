@@ -134,3 +134,18 @@ a i {
     padding: 0 7px;
     color: #02d6fc;
 }
+
+@media only screen and (max-width: 500px) {
+    #location{
+        font-size: 2em;
+    }
+    
+    div {
+        font-size: 1em;
+    }
+    
+    button div {
+        font-size: 1em;
+        line-height: 15px;
+    }
+}
