@@ -5,12 +5,13 @@ html, body {
     height: 100%;
     margin: 0;
     border: 0;
+    background-color: black;
 }
 
 main {
     margin: 0;
     padding: 0;
-    background-image: url("https://www.webdesign.org/img_articles/22423/01.gif");
+    /*background-image: url("https://www.webdesign.org/img_articles/22423/01.gif");*/
 
     height: 100%;
     background-position: center;
