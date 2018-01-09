@@ -22,7 +22,7 @@ $( document ).ready(() => {
                 };
                 
         let responseHandler = (data) => {
-            console.log(data);
+            console.log(data); ////Only for testing purposes
             let tempVal = data.main.temp;
             let imageIcon = data.weather[0].icon;
             $("#location").text(`${data.name}, ${data.sys.country}`);
@@ -30,11 +30,11 @@ $( document ).ready(() => {
             if(imageIcon){
                 $(".image").html(`<img src=${data.weather[0].icon} />`);
             }
-            console.log(`${data.weather[0].icon}`);
+            console.log(`${data.weather[0].icon}`); //Only for testing purposes
             $("#temperature").html(`Current Temperature: <span class="temperatureValue">${tempVal}</span><span class="currentState"> °C</span>`);
 
-            //Obtain images from unsplash API
-            let unsplash_id = "279f227c58b4278d7d7724b8e681048bf7a6d4b07f8553d43409f6d1bc594ec4";
+            //Obtaining images from unsplash API
+            let unsplash_id = UNSPLASH_ID; //In order to get UNSPLASH_ID you should register on https://unsplash.com/developers and create your app there
             let requestHeaders_unsplash = {
                 method: "GET",
                 url: `https://api.unsplash.com/photos/random?client_id=${unsplash_id}&query=${data.weather[0].main}&orientation=landscape`,
