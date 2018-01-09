@@ -25,4 +25,4 @@ All of them are absolutely free, though in order to use Unsplash API, you need t
 
 ### Final Notes<br>
 If you like this project and would like to contact me in person, feel free to do so on [TWITTER](https://twitter.com/ivilinchuk), [GitHub](https://github.com/Villian79), or [Facebook](https://github.com/Villian79). <br>
-I'm open to cooperation of any kind :simple_smile:
+I'm open to cooperation of any kind :sparkles:
